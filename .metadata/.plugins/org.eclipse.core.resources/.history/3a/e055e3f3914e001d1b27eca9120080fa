@@ -1,0 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ include file="/views/common/menubar.jsp" %>
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <meta charset="UTF-8">
+            <title>Insert title here</title>
+            <style>
+                .outer {
+                    background-color: black;
+                    color: white;
+                    width: 1000px;
+                    height: 500px;
+                    margin: auto;
+                    margin-top: 50px;
+                }
+
+                .list-area {
+                    border: 1px solid white;
+                    text-align: center;
+                }
+
+                .list-area>tbody>tr :hover {
+                    background-color: grey;
+                    cursor: pointer;
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <div class="outer">
+                <br>
+                <h2 align="center">
+                    공지사항
+                </h2>
+                <br>
+
+                <table class="list-area" align="center">
+                    <thead>
+                        <tr>
+                            <th>글번호</th>
+                            <th width="400">글제목</th>
+                            <th width="100">작성자</th>
+                            <th>조회수</th>
+                            <th width="100">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 보통 작성일 기준 내림차순, 최신글이 가장 위에 오도록 구현 -->
+                        <tr>
+                            <td>3</td>
+                            <td>test title</td>
+                            <td>admin</td>
+                            <td>0</td>
+                            <td>2021-05-07</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>test ing ...</td>
+                            <td>admin</td>
+                            <td>70</td>
+                            <td>2021-04-27</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>공지사항 서비스를 시작합니다.</td>
+                            <td>admin</td>
+                            <td>320</td>
+                            <td>2021-02-08</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </body>
+
+        </html>

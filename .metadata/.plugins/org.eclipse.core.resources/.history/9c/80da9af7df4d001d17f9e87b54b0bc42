@@ -1,0 +1,58 @@
+package com.kh.member.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class MemberUpdateController
+ */
+@WebServlet("/update.me")
+public class MemberUpdateController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MemberUpdateController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 1) 인코딩 설정
+		request.setCharacterEncoding("UTF-8");
+		
+		// 2) 요청 시 전달값들을 뽑아서 변수 및 객체에 담기
+		// 뽑아야할 값
+		// userId : 아이디값 => 변경 불가한 값 (unique 제약조건에 의해 구분용도)
+		String userId = request.getParameter("userId");
+		// userName : 이름
+		String userName = request.getParameter("userName");
+		// phone : 전화번호
+		String phone = request.getParameter("phone");
+		// email : 이메일
+		String email = request.getParameter("email");
+		// address : 주소
+		String address = request.getParameter("address");
+		// interest : 관심분야 (배열)
+		String[] interestArr = request.getParameterValues("interest");
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,6 @@
+package com.kh.common;
+
+// 자주 쓰이는 JDBC 관련한 반복적인 코드를 메소드 단위별로 묶어서 정의 => static => 싱글톤패턴 적용
+public class JDBCTemplate {
+
+}

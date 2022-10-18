@@ -1,0 +1,21 @@
+package com.kh.notice.model.vo;
+
+import java.sql.Date;
+
+public class Notice {
+	private int bNo;
+	private String title;
+	private String content;
+	private String writer;
+	private int count;
+	private Date create_date;
+	private String status;
+	
+	public Notice() {
+		
+	}
+	
+	public Notice(String title, String author, int view) {
+		
+	}
+}

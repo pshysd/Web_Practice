@@ -107,6 +107,21 @@ public class MemberService {
 		// 5) 결과 반환
 		return updateMem; // 성공 : 해당 갱신된 회원의 정보, 실패 : null
 	}
+
+	public int deleteMember(Member m) {
+		
+		Connection conn=JDBCTemplate.getConnection();
+		
+		int result = new MemberDao().deleteMember(conn, m);
+		
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 	

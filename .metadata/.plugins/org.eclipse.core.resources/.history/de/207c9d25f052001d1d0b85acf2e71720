@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    .outer {
+    background-color: black;
+    color : white;
+    width: 1000px;height: 550px;margin: auto;margin-top: 50px;
+}
+    .list-area {
+        border: 1px solid white;
+        text-align: center;
+
+    }
+    
+    .list-area>tbody>tr  :hover{
+        background-color: gray;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<%@ include file="../common/menubar.jsp" %>
+
+<div class="outer">
+    <br>
+    <h2 align="center">일반 게시판</h2>
+    <br>
+
+    <!-- 로그인한 회원만 보여지는 글 작성버튼 -->
+    <div>
+        <a href="" class="btn btn-secondary">글 작성</a>
+    </div>
+
+    <br>
+<!-- 조회한 게시물들이 보여질 자리 -->
+    <table align="center" class="list-area">
+        <thead>
+            <tr>
+                <th width="70">글번호</th>
+                <th width="70">카테고리</th>
+                <th width="300">제목</th>
+                <th width="100">작성자</th>
+                <th width="50">조회수</th>
+                <th width="100">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>10</td>
+                <td>게임</td>
+                <td>게시글 제목입니다.</td>
+                <td>user02</td>
+                <td>78</td>
+                <td>2022-05-01</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>게임</td>
+                <td>게시글 제목입니다.</td>
+                <td>user02</td>
+                <td>78</td>
+                <td>2022-05-01</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>게임</td>
+                <td>게시글 제목입니다.</td>
+                <td>user02</td>
+                <td>78</td>
+                <td>2022-05-01</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+
+    <!-- 페이징 바 만들기 -->
+    <div align="center" class="paging-area">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>10</button>
+    </div>
+</div>
+</body>
+</html>

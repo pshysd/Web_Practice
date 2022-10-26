@@ -43,7 +43,7 @@
 			절대경로 : /jsp/insert.no
 			상대경로 : insert.no
 		 -->
-		<form action="/<%=contextPath %>/insert.no" id="enroll-form" method="post">
+		<form action="<%=contextPath %>/insert.no" id="enroll-form" method="post">
 			<!-- 현재 로그인한 사용자의 정보를 알아내는 방법 
 				 1. input type="hidden"으로 애초에 넘기기
 				 2. session으로부터 얻어내기

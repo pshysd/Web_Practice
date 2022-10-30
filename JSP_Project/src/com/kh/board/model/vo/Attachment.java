@@ -29,6 +29,14 @@ public class Attachment {
         this.status = status;
     }
 
+
+    public Attachment(int fileNo, String originName, String changeName, String filePath) {
+        this.fileNo = fileNo;
+        this.originName = originName;
+        this.changeName = changeName;
+        this.filePath = filePath;
+    }
+
     public int getFileNo() {
         return fileNo;
     }

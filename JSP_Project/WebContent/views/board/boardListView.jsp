@@ -105,6 +105,14 @@ int maxPage = pi.getMaxPage();
 				  -->
 			</tbody>
 		</table>
+		
+		<script>
+			$(() => {
+				$('.list-area>tbody>tr').click((event) => {
+					location.href = "<%=contextPath%>/detail.bo?bno="+$(event.currentTarget).children().eq(0).text()
+				});
+			})
+		</script>
 		<br> <br>
 
 		<!-- 페이징 바 만들기 -->

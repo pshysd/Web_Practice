@@ -42,6 +42,18 @@ public class Board {
         this.createDate = createDate;
     }
 
+//    일반 게시글 상세조회용 생성자
+    public Board(int boardNo, String category, String boardTitle, String boardContent, String boardWriter,
+            Date createDate) {
+        super();
+        this.boardNo = boardNo;
+        this.category = category;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardWriter = boardWriter;
+        this.createDate = createDate;
+    }
+
     // 메소드
     public int getBoardNo() {
         return boardNo;

@@ -152,7 +152,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\SH\06_Web-workspace2\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\SH\06_Web-workspace2\JSP_Project\WebContent" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:JSP_Project"><Resources><PreResources base="C:\SH\06_Web-workspace2\JSP_Project\WebContent\WEB-INF\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context></Host>
+      <Context docBase="C:\06_Web-workspace2\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\06_Web-workspace2\JSP_Project\WebContent" path="/jsp" reloadable="true" source="org.eclipse.jst.jee.server:JSP_Project"><Resources><PreResources base="C:\06_Web-workspace2\JSP_Project\WebContent\WEB-INF\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context><Context docBase="C:\06_Web-workspace2\AJAX_Project\WebContent" path="/ajax" reloadable="true" source="org.eclipse.jst.jee.server:AJAX_Project"><Resources><PreResources base="C:\06_Web-workspace2\AJAX_Project\WebContent\WEB-INF\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context></Host>
     </Engine>
   </Service>
 </Server>

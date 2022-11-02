@@ -14,7 +14,8 @@ public class Board {
     private int count;
     private Date createDate;
     private String status;
-
+    
+    private String titleImg; // 경로를 포함한 썸네일 파일의 수정명
 //    생성자
     public Board() {
     }
@@ -125,6 +126,14 @@ public class Board {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTitleImg() {
+        return titleImg;
+    }
+
+    public void setTitleImg(String titleImg) {
+        this.titleImg = titleImg;
     }
 
     @Override

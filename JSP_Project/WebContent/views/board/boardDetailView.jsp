@@ -90,15 +90,22 @@ Attachment at = (Attachment) request.getAttribute("at");
 			<table border="1" align="center">
 				<thead>
 					<!-- 로그인이 되어있을 경우 -->
-					<!--<tr>
-                    <th>댓글 작성</th>
-                    <td><textarea name="" id="" cols="50" rows="3" style="resize:none;"></textarea></td>
-                    <td><button>댓글 등록</button></td>
-                </tr> -->
+					<% if(loginUser != null) {%>
+						<tr>
+							<th>댓글 작성</th>
+							<td><textarea id="replyContent" cols="50" rows="3"
+									style="resize: none;" readonly>
+									로그인 후 이용 가능한 서비스 입니다.
+								</textarea></td>
+							<td>
+								<button onclick="insertReply();">댓글 등록</button>
+							</td>
+						</tr>
+					<%}else{%>
 					<!-- 로그인이 되어있지 않은 경우-->
 					<tr>
 						<th>댓글 작성</th>
-						<td><textarea name="" id="" cols="50" rows="3"
+						<td><textarea id="" cols="50" rows="3"
 								style="resize: none;" readonly>
                                 로그인 후 이용 가능한 서비스 입니다.
                             </textarea></td>
@@ -106,6 +113,7 @@ Attachment at = (Attachment) request.getAttribute("at");
 							<button disabled>댓글 등록</button>
 						</td>
 					</tr>
+					<%}%>
 				</thead>
 				<tbody>
 					<tr>
@@ -121,6 +129,48 @@ Attachment at = (Attachment) request.getAttribute("at");
 					0
 				</tbody>
 			</table>
+			
+			<script>
+				$(()=> {
+					selectReplyList();
+				});
+
+				function insertReply() {
+					$.ajax({
+						url : 'rinsert.bo',
+						data : {content : $('#replyContent').val(),
+								bno : <%=b.getBoardNo()%>
+								},
+						type : 'post',
+						success : (res) => {
+
+						},
+						error : () => console.log('댓글작성 실패!!!!!!!!!!')
+					})
+				}
+				function selectReplyList() {
+					$.ajax({
+						url : 'rlist.bo',
+						data : {bno : <%=b.getBoardNo()%>},
+						type : 'get',
+						success : (res) => {
+							let result = "";
+
+							res.forEach(element => {
+								result += '<tr>'
+									+'<td>'+element.replyWriter+'</td>'
+									+'<td>'+element.replyContent+'</td>'
+									+'<td>'+element.createDate+'</td>'
+									+'</tr>'
+							});
+							$('#reply-area tbody').html(result);
+						},
+
+						error : () => console.log('아이고 덧글 조회에 문제가 발생했다')
+					})
+				}
+			
+			</script>
 		</div>
 	</div>
 </body>

@@ -15,8 +15,8 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+</script>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -79,7 +79,6 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 			// 알림창을 띄워준 후에 session에 담긴 값을 지워줘야 한다
 	<%session.removeAttribute("alertMsg");%>
 		}
-		console.log(msg);
 	</script>
 
 	<h1 align="center">Welcome D Class</h1>
@@ -121,8 +120,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 								// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
 
 								// 단순한 페이지 요청이라고 하더라도 반드시 Servlet을 거쳐갈 것
-								location.href = "<%=contextPath%>
-			/enrollForm.me";
+								location.href = "<%=contextPath%>/enrollForm.me";
 			}
 		</script>
 		<%
@@ -159,7 +157,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 			<a href="<%=contextPath%>/list.bo?currentPage=1">일반게시판</a>
 		</div>
 		<div class="menu">
-			<a href="">사진게시판</a>
+			<a href="<%=contextPath%>/list.th">사진게시판</a>
 		</div>
 	</div>
 </body>

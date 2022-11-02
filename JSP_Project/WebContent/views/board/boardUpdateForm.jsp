@@ -43,8 +43,8 @@ Attachment at = (Attachment) request.getAttribute("at");
 		<h2 align="center">일반게시판 수정하기</h2>
 		<br>
 
-		<form action="" id="update-form" method="post"
-			enctype="multipart/form-data">
+		<form id="update-form" action="<%=contextPath%>/update.bo" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="bno" value="<%=b.getBoardNo()%>">
 			<table align="center">
 				<tr>
 					<!--
@@ -57,33 +57,44 @@ Attachment at = (Attachment) request.getAttribute("at");
 							<%
 								for (Category c : list) {
 							%>
-							<option value="<%=c.getCategoryNo()%>">
-								<%=c.getCategoryName()%>
-							</option>
+							<option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName()%></option>
 							<%
 								}
 							%>
 
-					</select></td>
+					</select> <script>
+					$(function() {
+						$('#update-form option').each(function(){
+							if($(this).text() == "<%=b.getCategory()%>"){
+								$(this).attr('selected', true);
+							}	
+							})
+						});
+						
+					</script></td>
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="title" required value="<%=b.getBoardTitle()%>"></td>
+					<td><input type="text" name="title" required
+						value="<%=b.getBoardTitle()%>"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td><textarea name="content" rows="10" required
-							style="resize: none;"><%=b.getBoardContent() %></textarea></td>
+							style="resize: none;"><%=b.getBoardContent()%></textarea></td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
 					<td>
-					<%if(at != null) {%>
-						<!-- 기존의 파일이 있다면 원본명을 보여주자 --> 
-						<%=at.getOriginName() %>
-						<%} %>
-						<input type="file" name="reUpfile">
-						
+						<%
+							if (at != null) {
+						%> <!-- 기존의 파일이 있다면 원본명을 보여주자 --> <%=at.getOriginName()%> <input
+						type="hidden" name="originFileNo" value="<%=at.getFileNo()%>">
+						<input type="hidden" name="originFileName"
+						value="<%=at.getChangeName()%>"> <%
+ 	}
+ %> <input type="file" name="reUpfile">
+
 					</td>
 				</tr>
 			</table>

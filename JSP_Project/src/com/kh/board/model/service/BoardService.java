@@ -9,6 +9,7 @@ import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Attachment;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.Category;
+import com.kh.board.model.vo.Reply;
 import com.kh.common.model.vo.PageInfo;
 
 public class BoardService {
@@ -113,23 +114,100 @@ public class BoardService {
 
     public Board selectBoard(int boardNo) {
         Connection conn = getConnection();
-        
+
         Board b = new BoardDao().selectBoard(conn, boardNo);
-        
+
         close(conn);
-        
+
         return b;
     }
 
     public Attachment selectAttachment(int boardNo) {
-        
+
         Connection conn = getConnection();
-        
+
         Attachment at = new BoardDao().selectAttachment(conn, boardNo);
-        
+
         close(conn);
-        
+
         return at;
     }
 
+    public int updateBoard(Board b, Attachment at) {
+
+        Connection conn = getConnection();
+
+//        3가지 경우 모두 공통적으로 실행해야 하는 BOARD UPDATE 구문 요청
+        int result1 = new BoardDao().updateBoard(conn, b);
+
+        int result2 = 1; // 0 했다가 if 건너뛰면 실패처리되니 1로 하세요
+
+        if (at != null) { // 새롭게 첨부된 파일이 있을 경우 -> Attachment 테이블에 UPDATE 또는 INSERT
+
+            if (at.getFileNo() != 0) { // 기존 첨부파일이 있는 경우 -> Attachment UPDATE
+                result2 = new BoardDao().updateAttachment(conn, at);
+            } else { // 기존 첨부파일이 없는 경우 -> Attachment INSERT 요청
+
+//                기존에 만든 insertAttachment 재활용 불가능(쿼리 다름)
+                result2 = new BoardDao().insertNewAttachment(conn, at); // 오버로딩 안됨 매개변수 같아서
+            }
+        }
+
+        if (result1 > 0 && result2 > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        close(conn);
+        return result1 * result2;
+    }
+
+    public int insertThumbnailBoard(Board b, ArrayList<Attachment> list) {
+        
+        Connection conn= getConnection();
+        
+//        각각 b와 list를 INSERT 할 수 있는 요청 보내기
+        int result1 = new BoardDao().insertThumbnailBoard(conn, b);
+        
+        int result2 = new BoardDao().insertAttachmentList(conn, list);
+        
+        if(result1 > 0 && result2 > 0) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        return result1 * result2;
+    }
+
+    public ArrayList<Board> selectThumbnailList() {
+        Connection conn = getConnection();
+        
+        ArrayList<Board> list = new BoardDao().selectThumbnailList(conn);
+        
+        close(conn);
+        
+        return list;
+    }
+
+    public ArrayList<Attachment> selectAttachmentList(int boardNo) {
+        
+        Connection conn = getConnection();
+        
+        ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
+        
+        close(conn);
+        
+        return list;
+    }
+
+    public ArrayList<Reply> selectReplyList(int boardNo) {
+        Connection conn = getConnection();
+        
+        ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
+        
+        close(conn);
+        
+        return list;
+    }
 }

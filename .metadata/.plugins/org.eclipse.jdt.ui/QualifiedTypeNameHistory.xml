@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
 <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
-<fullyQualifiedTypeName name="com.kh.member.model.service.MemberService"/>
 <fullyQualifiedTypeName name="com.sun.glass.ui.monocle.LinuxInputProcessor.Logger"/>
 <fullyQualifiedTypeName name="com.sun.media.jfxmedia.logging.Logger"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
@@ -16,7 +15,6 @@
 <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
-<fullyQualifiedTypeName name="com.kh.common.JDBCTemplate"/>
 <fullyQualifiedTypeName name="com.kh.common.model.vo.PageInfo"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
@@ -24,7 +22,6 @@
 <fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.kh.board.model.vo.Category"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="oracle.net.aso.p"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
@@ -33,8 +30,15 @@
 <fullyQualifiedTypeName name="com.kh.board.model.vo.Board"/>
 <fullyQualifiedTypeName name="com.kh.board.model.service.BoardService"/>
 <fullyQualifiedTypeName name="com.kh.board.model.vo.Attachment"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="com.kh.member.model.service.MemberService"/>
+<fullyQualifiedTypeName name="com.kh.member.model.dao.MemberDao"/>
+<fullyQualifiedTypeName name="com.kh.common.JDBCTemplate"/>
+<fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+<fullyQualifiedTypeName name="com.kh.model.vo.Member"/>
 <fullyQualifiedTypeName name="com.kh.board.model.dao.BoardDao"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
 </qualifiedTypeNameHistroy>

@@ -4245,3 +4245,6 @@ java.nio.file.FileSystemException: C:\06_Web-workspace2\JSP_Project\WebContent\W
 !MESSAGE Could not delete: C:\06_Web-workspace2\JSP_Project\WebContent\WEB-INF\classes\sql\driver.
 !SUBENTRY 5 org.eclipse.core.filesystem 4 273 2022-11-02 18:29:41.390
 !MESSAGE Could not delete: C:\06_Web-workspace2\JSP_Project\WebContent\WEB-INF\classes\sql.
+
+!ENTRY org.eclipse.core.resources 2 10035 2022-11-02 19:25:36.085
+!MESSAGE The workspace will exit with unsaved changes in this session.

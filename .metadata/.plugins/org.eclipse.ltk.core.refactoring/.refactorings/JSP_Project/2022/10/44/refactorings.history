@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;JSP_Project&apos;&#x0D;&#x0A;- Original project: &apos;JSP_Project&apos;&#x0D;&#x0A;- Original element: &apos;JSP_Project/src/com.kh.board.model.dao&apos;" description="Delete element" element1="/src&lt;com.kh.board.model.dao" element2="/src&lt;com.kh.board.model" element3="/src&lt;com.kh.board" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1666534072126" subPackages="false" version="1.0"/>
-</session>

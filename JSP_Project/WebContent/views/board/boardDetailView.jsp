@@ -93,12 +93,9 @@ Attachment at = (Attachment) request.getAttribute("at");
 					<% if(loginUser != null) {%>
 						<tr>
 							<th>댓글 작성</th>
-							<td><textarea id="replyContent" cols="50" rows="3"
-									style="resize: none;" readonly>
-									로그인 후 이용 가능한 서비스 입니다.
-								</textarea></td>
+							<td><textarea id="replyContent" cols="50" rows="3" style="resize: none;"></textarea></td>
 							<td>
-								<button onclick="insertReply();">댓글 등록</button>
+								<button onclick="insertReply()">댓글 등록</button>
 							</td>
 						</tr>
 					<%}else{%>
@@ -116,23 +113,15 @@ Attachment at = (Attachment) request.getAttribute("at");
 					<%}%>
 				</thead>
 				<tbody>
-					<tr>
-						<td>admin</td>
-						<td>댓글 내용이 들어갈 자리</td>
-						<td>2022-10-21</td>
-					</tr>
-					<tr>
-						<td>admin</td>
-						<td>댓글 내용이 들어갈 자리</td>
-						<td>2022-10-21</td>
-					</tr>
-					0
 				</tbody>
 			</table>
 			
 			<script>
 				$(()=> {
 					selectReplyList();
+					
+					// 1초 간격마다 selectReplyList 함수 실행
+					setInterval(selectReplyList, 1000);
 				});
 
 				function insertReply() {
@@ -143,11 +132,22 @@ Attachment at = (Attachment) request.getAttribute("at");
 								},
 						type : 'post',
 						success : (res) => {
-
+							//  댓글 작성 성공시 1, 실패시 0이 담겨있을 것...
+							if(res > 0){
+								
+								// 갱신된 댓글 리스트 다시 조회
+								selectReplyList();
+								
+								// 댓글 작성 창 비우기
+								$('#replyContent').val('');
+							}else{ // 실패
+								alert('댓글 작성중에 문제 발생');
+							}
 						},
-						error : () => console.log('댓글작성 실패!!!!!!!!!!')
+						error : () => console.log('댓글 작성 ajax 통신 실패!!!!!!!!!!')
 					})
 				}
+				
 				function selectReplyList() {
 					$.ajax({
 						url : 'rlist.bo',

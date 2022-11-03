@@ -163,17 +163,17 @@ public class BoardService {
     }
 
     public int insertThumbnailBoard(Board b, ArrayList<Attachment> list) {
-        
-        Connection conn= getConnection();
-        
+
+        Connection conn = getConnection();
+
 //        각각 b와 list를 INSERT 할 수 있는 요청 보내기
         int result1 = new BoardDao().insertThumbnailBoard(conn, b);
-        
+
         int result2 = new BoardDao().insertAttachmentList(conn, list);
-        
-        if(result1 > 0 && result2 > 0) {
+
+        if (result1 > 0 && result2 > 0) {
             commit(conn);
-        }else {
+        } else {
             rollback(conn);
         }
         close(conn);
@@ -182,32 +182,48 @@ public class BoardService {
 
     public ArrayList<Board> selectThumbnailList() {
         Connection conn = getConnection();
-        
+
         ArrayList<Board> list = new BoardDao().selectThumbnailList(conn);
-        
+
         close(conn);
-        
+
         return list;
     }
 
     public ArrayList<Attachment> selectAttachmentList(int boardNo) {
-        
+
         Connection conn = getConnection();
-        
+
         ArrayList<Attachment> list = new BoardDao().selectAttachmentList(conn, boardNo);
-        
+
         close(conn);
-        
+
         return list;
     }
 
     public ArrayList<Reply> selectReplyList(int boardNo) {
         Connection conn = getConnection();
-        
+
         ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
-        
+
         close(conn);
-        
+
         return list;
+    }
+
+    public int insertReply(Reply r) {
+
+        Connection conn = getConnection();
+
+        int result = new BoardDao().insertReply(conn, r);
+
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        close(conn);
+
+        return result;
     }
 }

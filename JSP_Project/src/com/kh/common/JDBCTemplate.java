@@ -21,8 +21,7 @@ public class JDBCTemplate {
 		
 		// 읽어들이고자 하는 driver.properties 파일의 물리적인 경로
 		// => 지금 내가 작업중인 폴더는 src 폴더 말고, 배포되는 폴더 기준 (실행되는 폴더 기준) 기준으로 잡아야함
-		String fileName = JDBCTemplate.class.getResource("/sql/driver/driver.properties").getPath();
-		// JDBCTemplate.class => 이 클래스의 컴파일된 파일
+		String fileName = JDBCTemplate.class.getResource("/sql/driver/driver.properties").getPath();		// JDBCTemplate.class => 이 클래스의 컴파일된 파일
 		// .getResource("/sql/drvier/driver.properties") => 해당 클래스 파일로부터 다른 파일을 얻어내겠다.
 		//												 => 맨 처음의 / 가 의미하는것 : class 파일들이 모여있는 최상위 폴더인 classes 폴더를 의미
 		// .getPath() => 해당 파일의 문자열 타입의 풀 경로

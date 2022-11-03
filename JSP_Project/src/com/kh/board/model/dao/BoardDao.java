@@ -425,9 +425,9 @@ public class BoardDao {
 
             while (rset.next()) {
                 list.add(new Reply(rset.getInt("REPLY_NO"),
-                                   rset.getString("REPLY_CONTENT"),
-                                   rset.getString("USER_ID"),
-                                   rset.getString("CREATE_DATE")));
+                        rset.getString("REPLY_CONTENT"),
+                        rset.getString("USER_ID"),
+                        rset.getString("CREATE_DATE")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -436,5 +436,26 @@ public class BoardDao {
             close(pstmt);
         }
         return list;
+    }
+
+    public int insertReply(Connection conn, Reply r) {
+        PreparedStatement pstmt = null;
+        String sql = prop.getProperty("insertReply");
+        int result = 0;
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, r.getReplyContent());
+            pstmt.setInt(2, r.getRefBoardNo());
+            pstmt.setString(3, r.getReplyWriter());
+
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            close(pstmt);
+        }
+        return result;
     }
 }

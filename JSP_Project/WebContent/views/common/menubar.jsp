@@ -1,13 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.kh.member.model.vo.Member"%>
-<%
 	// 로그인한 사용자의 정보를 sesion에 담았기 때문에 // 이 웹 애플리케이션의 어디서든지 해당 키 값을 제시해서 로그인한 사용자의 정보를 가져올 수 있음 
 Member loginUser = (Member) session.getAttribute("loginUser"); // System.out.println(loginUser); 
 // 로그인 전 menubar.jsp 로딩 시 : null 
 // 로그인 후 menubar.jsp 로딩 시 : 로그인한 회원의 정보가 담긴 Member 객체 
 String contextPath = request.getContextPath(); // 성공 시 알람 문구 또한 session에 담았기 때문에 // session으로부터 뽑기 
 String alertMsg = (String) session.getAttribute("alertMsg");
+
+// 쿠키 불러오기
+// -> request.getCookies() 메소드 -> Cookie 타입의 배열로 리턴
+Cookie[] cookies = request.getCookies();
+String saveId = "";
+// 배열에 담긴 여러 개의 쿠키 세트들 중에 내가 원하는 쿠키만 골라내는 작업 진행
+if (cookies != null) {
+	for (int i = 0; i < cookies.length; i++) {
+		// System.out.println(i + " : " + cookies[i].getName() + " / " + cookies[i].getValue());
+		// 서버는 기본적으로 JSESSIONID 라는 쿠키를 만들어준다.
+		// 쿠키로부터 name(키값)을 뽑아내려면 getName(), value를 뽑아내려면 getValue() 메소드를 이용
+
+		if (cookies[i].getName().equals("saveId")) {
+	saveId = cookies[i].getValue();
+	break;
+		}
+	}
+}
+
+// 이 시점 기준으로 "saveId"라는 키값을 가진 쿠키가 있었다면
+// String 타입의 saveId 라는 변수에 해당 아이디 값 자체가 담겨있을 것
 %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +35,8 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 </script>
 
 <!-- Latest compiled and minified CSS -->
@@ -104,6 +125,11 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 					<th>비밀번호 :</th>
 					<td><input type="password" name="userPwd" id="" required /></td>
 				</tr>
+				<tr align="right">
+					<th colspan="2"><input type="checkbox" id="saveId"
+						name="saveId" value="y"> <label for="saveId">아이디
+							저장</label></th>
+				</tr>
 				<tr>
 					<th colspan="2">
 						<button type="submit">로그인</button>
@@ -114,14 +140,22 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 		</form>
 
 		<script>
-							function enrollPage() {
 
-								// location.href ="<%=contextPath%>/views/member/memberEnrollForm.jsp";
-								// 웹 애플리케이션의 디렉토리 구조가 url에 노출되면 보안에 취약
-
-								// 단순한 페이지 요청이라고 하더라도 반드시 Servlet을 거쳐갈 것
-								location.href = "<%=contextPath%>/enrollForm.me";
+		$(() => {
+			let saveId = "<%=saveId%>"; // "user01" or ''
+			
+			if(saveId != ''){
+				$('#login-form input[name=userId]').val(saveId);
+				$('#saveId').attr('checked',true);
 			}
+		})
+		
+		function enrollPage() {
+
+		// 단순한 페이지 요청이라고 하더라도 반드시 Servlet을 거쳐갈 것
+		location.href = "<%=contextPath%>/enrollForm.me";
+		}
+		
 		</script>
 		<%
 			} else {

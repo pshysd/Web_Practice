@@ -140,11 +140,6 @@ public class BoardListController extends HttpServlet {
 //        pi를 넘기면서 서비스로 요청
         ArrayList<Board> list = new BoardService().selectList(pi);
         
-        if(list.isEmpty()) {
-            
-        }else {
-            
-        }
         
         request.setAttribute("pi", pi);
         request.setAttribute("list", list);

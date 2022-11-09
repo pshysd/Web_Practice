@@ -98,7 +98,7 @@
 		// 클릭이벤트 밖에 mainPop 이라는 쿠키가 있나 검사
 		// -> document.cookie 속성 값에 "mainPop=n"이 포함되었나 검사해야함
 		// 자바스크립트에서 문자열 포함 관계를 나타내주는 메소드 : 문자열.includes('문자열')
-		if(document.cookie.inclues('mainPop=n')){
+		if(document.cookie.includes('mainPop=n')){
 	
 			// 모달창을 닫아주는 부트스트랩 메소드 : .modal('hide');
 			// mainPop 이라는 쿠키가 있다 == 24시간동안 광고창을 보지 않겠다.

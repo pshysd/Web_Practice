@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.model.vo.Person"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -165,6 +165,205 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <mark>Goodbye World!</mark>
         </c:if>
 
+        <hr>
+
+        <h3>3. 조건문 - choose, when, otherwise (&lt;c:choose&gt;, &lt;c:when test="조건식"&gt;, &lt;c:otherwise&gt;)</h3>
+
+        <pre>
+            - JAVA의 if-else, if-else if 문 또는 switch문과 비슷한 역할을 하는 태그
+            - 각 조건들은 c:choose 태그의 하위요소로 묶으면 됨
+            - 각 조건들은 c:when 태그를 통해서 작성
+            - 작성했던 모든 조건들에 대해서 이도저도 아닐 때 (else 블럭) c:otherwise로 표현함
+        </pre>
+
+        <%-- 
+            기존 방법
+            <% if(num1 == 20) { %>
+                ~~~
+            <%  } else if (num1 == 10) { %>
+                ~~~
+
+            <% } else { %> 
+                ~~~~
+            <% } %>
+        --%>
+
+        <c:choose>
+            <c:when test="${num1 eq 20}"><b>처음 뵙겠습니다.</b></c:when>
+            <c:when test="${num1 eq 10}"><b>다시 봐서 반갑습니다.</b></c:when>
+            <c:otherwise><b>안녕하세요.</b></c:otherwise>
+        </c:choose>
+
+        <hr>
+
+        <h3>4. 반복문 - forEach</h3>
+
+        <pre>
+            for loop 표현법
+            &lt;c:forEach var="변수명" begin="초기값" end="끝값" step="증감값(생략시 기본값 1)"&gt;
+                반복적으로 실행할 구문
+            &lt;c:forEach&gt;`
+
+            향상된 for loop 표현법
+            &lt;c:forEach var="변수명" items="순차적으로접근할배열또는컬렉션명" varStatus="현재접근된요소의상태값을보관할변수명(생략가능)"&gt;
+                반복적으로 실행할 구문
+            &lt;c:forEach%>
+
+            -> step : 증감식에 해당, 생략 시 기본 값은 1 (반복이 돌 떄 마다 1씩 증가한다.)
+            -> varStatus : 현재 접근한 요소의 상태 값을 보관할 변수명 (지정하기 나름)
+                            부가적인 기능 제공 (반복의 횟수를 알려준다든지, 현재 접근한 요소의 인덱스를 알려준다든지)
+        </pre>
+
+        <!-- for loop -->
+        <%--
+
+        <% for(int i=1; i<=10; i++) { %>
+            ~~~
+        <% } %>
+
+        --%>
+
+        <c:forEach var="i" begin="1" end="10" step="1">
+            반복 확인 : ${i} <br>
+        </c:forEach>
+
+        <br>
+        <%--
         
+        <% for(int i=1; i<=10; i += 2) { %>
+        ~~~
+        <% } %>
+
+        --%>
+
+        <c:forEach var="i" begin="1" end="10" step="2">
+            반복 확인 : ${i} <br>
+        </c:forEach>
+
+        <br>
+
+        <!-- 태그 안에서도 사용 가능함 -->
+        <c:forEach var="i" begin="1" end="6" step="1">
+            <h${i}>태그 안에서도 적용 가능함</h${i}>
+        </c:forEach>
+
+        <br>
+
+        <!-- 향상된 for loop -->
+        <%--
+
+        <% for(String s : list) { %>
+                ~~~
+        <% } %>
+        
+        --%>
+        <c:set var="colors">
+            red, yellow, green, pink
+        </c:set> <!-- 배열과 같은 역할 -->
+
+        color 값 : ${ colors } <br>
+
+        <ul>
+            <c:forEach var="c" items="${colors}">
+                <li style="color:${c}">${c}</li>
+            </c:forEach>
+        </ul>
+
+        <br>
+        
+        <!-- 종합 응용 -->
+
+        <%
+            // DB로부터 조회 후 서블릿으로부터 넘겨받았다는 가정하에 테스트 데이터 세팅
+            ArrayList<Person>list = new ArrayList<>();
+            list.add(new Person("홍길동", 20, "남자"));
+            list.add(new Person("김말순", 30, "여자"));
+            list.add(new Person("박말똥", 40, "남자"));
+
+            request.setAttribute("pList", list);
+        %>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>순번</th>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>성별</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%--
+                <% if(pList.isEmpty()) {%>
+                조회된 회원이 없습니다
+                <%} else { %>
+                    <% for(Person p : pList) { %>
+
+                    <% } %>
+                <% } %>
+                --%>
+
+                <c:choose>
+                    <c:when test="${empty pList}">
+                        <tr align="center">
+                            <td colspan="4">조회 결과가 없습니다.</td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="p" items="${pList}">
+                            <tr>
+                                <td>${status.count}</td> <!-- index : 0부터 시작하는 인덱스값 / count : 1부터 시작하는 반복 횟수 -->
+                                <td>${p.name}</td>
+                                <td>${p.age}</td>
+                                <td>${p.gender}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </tbody>
+        </table>
+
+        <h3>5. 반복문 - forTokens</h3>
+
+        <pre>
+            &lt;c:forTokens var="각값을보관할변수" items="분리시키고자하는문자열" delims="구분자"&gt;
+
+            - 구분자를 통해서 분리된 각각의 문자열에 순차적으로 접근하면서 반복을 수행
+            - JAVA의 StringTokenizer 또는 split(구분자)와 비슷한 역할
+        </pre>
+
+        <c:set var="device" value="컴퓨터, 휴대폰, TV, 에어컨/냉장고.세탁기"></c:set>
+
+        <ul>
+            <c:forTokens var="d" items="${device}" delims=",./">
+                <li>${d}</li>
+            </c:forTokens>
+        </ul>
+
+        <hr>
+
+        <h3>6. 쿼리스트링 관련 - url, param</h3>
+
+        <pre>
+            &lt;c:url var="변수명" value="list.bo"&gt;
+                &lt;c:param name="currentPage" value="1" /&gt; // -> http:11231:123123/asd/list.bo?currentPage=1
+                &lt;c:param name="keyword" value="검색어" /&gt; // -> http:11231:123123/asd/list.bo?currentPage=1&keyword=검색어
+                ...
+            &lt;/c:url&gt;
+            - url 경로를 생성하고, 쿼리스트링을 정의할 수 있는 태그
+            - 넘겨야 할 쿼리스트링이 길 경우 사용하면 편하다.
+        </pre>
+
+        <a href="list.do?cPage=1&num1=2&city=서울&name=홍길동">기존 방식</a> <br>
+
+        <!-- url, param 태그를 이용한 방식 -->
+        <c:url var="query" value="list.do">
+            <c:param name="cPage" value="1" />
+            <c:param name="num1" value="2" />
+            <c:param name="city" value="서울" />
+            <c:param name="name" value="홍길동" />
+        </c:url>
+
+        <a href="${query}">c:url을 이용한 방식</a>
     </body>
 </html>

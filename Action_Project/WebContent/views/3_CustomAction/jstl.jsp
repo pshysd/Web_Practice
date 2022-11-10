@@ -45,5 +45,15 @@
     </p>
 
     <a href="01_core.jsp">Core Library</a>
+
+    <br>
+
+    <h4>2. JSTL Formatting Library</h4>
+
+    <p>
+        숫자, 날짜 및 시간 데이터의 출력 형식을 지정할 떄 사용하는 문법을 제공
+    </p>
+
+    <a href="02_formatting.jsp">Formatting Libarary</a>
 </body>
 </html>

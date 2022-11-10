@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.kh.member.model.vo.Member"%>
 	// 로그인한 사용자의 정보를 sesion에 담았기 때문에 // 이 웹 애플리케이션의 어디서든지 해당 키 값을 제시해서 로그인한 사용자의 정보를 가져올 수 있음 
-Member loginUser = (Member) session.getAttribute("loginUser"); // System.out.println(loginUser); 
+<% Member loginUser = (Member) session.getAttribute("loginUser"); %> 
+// System.out.println(loginUser); 
 // 로그인 전 menubar.jsp 로딩 시 : null 
 // 로그인 후 menubar.jsp 로딩 시 : 로그인한 회원의 정보가 담긴 Member 객체 
+<% 
 String contextPath = request.getContextPath(); // 성공 시 알람 문구 또한 session에 담았기 때문에 // session으로부터 뽑기 
 String alertMsg = (String) session.getAttribute("alertMsg");
 
@@ -25,7 +27,6 @@ if (cookies != null) {
 		}
 	}
 }
-
 // 이 시점 기준으로 "saveId"라는 키값을 가진 쿠키가 있었다면
 // String 타입의 saveId 라는 변수에 해당 아이디 값 자체가 담겨있을 것
 %>

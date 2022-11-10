@@ -78,6 +78,54 @@
             현재 날짜 : <fmt:formatDate value="${current}"/>
             <!-- type 생략 가능, 생략시 기본값 "date" -->
         </li>
+        <br>
+        <li>
+            현재 시간 : <fmt:formatDate value="${current}" type="time" />
+            <!-- type="time": 시간만 출력하겠다. -->
+        </li>
+        <br>
+        <li>
+            현재 날짜 및 시간: <fmt:formatDate value="${current}" type="both" />
+            <!-- type="both": 날짜와 시간 둘 다 출력하겠다.  -->
+        </li>
+        <br>
+        <li>
+            medium: <fmt:formatDate value="${current}" type="both" dateStyle="medium" timeStyle="medium"/>
+            <!-- style 기본값: medium -->
+        </li>
+        <br>
+        <li>
+            long: <fmt:formatDate value="${current}" type="both" dateStyle="long" timeStyle="long" />
+            <!--  -->
+        </li>
+        <br>
+        <li>
+            short: <fmt:formatDate value="${current}" type="both" dateStyle="short" timeStyle="short" />
+        </li>
+        <br>
+        <li>
+            full: <fmt:formatDate value="${current}" type="both" dateStyle="full" timeStyle="full" />
+        </li>
+        <br>
+        <li>
+            섞어서 쓸 수도 있다: <fmt:formatDate value="${current}" type="both" dateStyle="full" timeStyle="short"></fmt:formatDate>
+        </li>
+        <br>
+        <li>
+            customizing: <fmt:formatDate value="${current}" type="both" pattern="yyyy-MM-dd(E) a HH:mm:ss" />
+            <!-- 
+                pattern 속성을 통해 커스터마이징이 가능
+                - pattern 형식이 의미하는 것들
+                yyyy: 년도
+                MM: 월
+                dd: 일
+                E: 요일
+                a: 오전 / 오후
+                HH: 시
+                mm: 분
+                ss: 초
+             -->
+        </li>
     </ul>
 
 </body>

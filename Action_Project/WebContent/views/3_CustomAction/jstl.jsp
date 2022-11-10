@@ -55,5 +55,16 @@
     </p>
 
     <a href="02_formatting.jsp">Formatting Libarary</a>
+
+    <br>
+
+    <h4>3. JSTL Functions Library</h4>
+
+    <p>
+        EL 구문 안에서 사용할 수 있는 메소드를 제공
+
+    </p>
+
+    <a href="03_functions.jsp">Functions Libarary</a>
 </body>
 </html>
